@@ -83,6 +83,9 @@ function M._run(out)
 	end
 
 	local playdate_simulator = vim.fs.joinpath(Config.playdate_sdk_path, "/bin/PlaydateSimulator")
+	if not vim.uv.fs_stat(playdate_simulator) then
+		playdate_simulator = vim.fs.joinpath(Config.playdate_sdk_path, "/bin/Playdate Simulator.app/Contents/MacOS/Playdate Simulator")
+	end
 
 	vim.system({ playdate_simulator, out }, {
 		text = true,
